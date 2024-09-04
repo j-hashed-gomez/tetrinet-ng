@@ -13,6 +13,9 @@ WORKDIR /app
 # Copiar todos los archivos del repositorio en el contenedor en el directorio /app
 COPY . /app
 
+# Instalar las dependencias de Python desde el archivo requirements.txt
+RUN pip3 install --no-cache-dir -r requirements.txt
+
 # Dar permisos de ejecución al script tetri_server.py si es necesario
 RUN chmod +x /app/tetri_server.py
 
