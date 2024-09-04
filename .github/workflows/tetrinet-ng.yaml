@@ -60,3 +60,4 @@ jobs:
             echo "Verifying new container is running..."
             docker ps -a
           EOF
+          
