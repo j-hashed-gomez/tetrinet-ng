@@ -50,7 +50,7 @@ jobs:
         run: |
           ssh -o StrictHostKeyChecking=no root@51.210.102.229 << 'EOF'
             docker pull ghcr.io/${{ github.repository }}/my-image:latest
-            docker run -d -p 5432:5432 --name my-container ghcr.io/${{ github.repository }}/my-image:latest
+            docker run -d -p 5432:5432 --name tetrinet-ng ghcr.io/${{ github.repository }}/my-image:latest
           EOF
 
       # 8. Verify that the new container is running
