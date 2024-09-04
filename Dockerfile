@@ -10,11 +10,14 @@ RUN apt-get update && apt-get install -y \
 # Establecer el directorio de trabajo en /app
 WORKDIR /app
 
-# Copiar todos los archivos del repositorio en el contenedor en el directorio /app
-COPY . /app
+# Copiar requirements.txt al contenedor
+COPY requirements.txt /app/
 
 # Instalar las dependencias de Python desde el archivo requirements.txt
 RUN pip3 install --no-cache-dir -r requirements.txt
+
+# Copiar todos los archivos del repositorio al contenedor en el directorio /app
+COPY . /app
 
 # Dar permisos de ejecución al script tetri_server.py si es necesario
 RUN chmod +x /app/tetri_server.py
