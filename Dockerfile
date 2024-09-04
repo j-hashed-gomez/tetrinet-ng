@@ -5,16 +5,21 @@ FROM debian:latest
 RUN apt-get update && apt-get install -y \
     python3 \
     python3-pip \
+    python3-venv \
     && apt-get clean
 
 # Establecer el directorio de trabajo en /app
 WORKDIR /app
 
-# Copiar requirements.txt al contenedor
+# Crear y activar un entorno virtual
+RUN python3 -m venv /app/venv
+ENV PATH="/app/venv/bin:$PATH"
+
+# Copiar el archivo requirements.txt al contenedor
 COPY requirements.txt /app/
 
 # Instalar las dependencias de Python desde el archivo requirements.txt
-RUN pip3 install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r /app/requirements.txt
 
 # Copiar todos los archivos del repositorio al contenedor en el directorio /app
 COPY . /app
